@@ -12,10 +12,10 @@ module.exports = {
     modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
       react: path.join(__dirname, 'node_modules', 'react'),
+      src: path.resolve(__dirname, 'src')
     },
   },
   module: {
-    noParse: /lodash/,
     rules: [
       {
         test: /\.tsx?$/,

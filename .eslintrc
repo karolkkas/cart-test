@@ -21,6 +21,7 @@
   "plugins": ["react-hooks", "prettier"],
   "settings": {
     "import/resolver": {
+      "typescript": {},
       "node": {
         "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
