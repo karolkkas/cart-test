@@ -2,18 +2,25 @@ export interface CustomError {
   message: string;
 }
 
+export enum StateTypes {
+  IDLE = 'IDLE',
+  LOADING = 'LOADING',
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
+
 export type States<D> =
   | {
-      type: 'IDLE';
+      type: StateTypes.IDLE;
     }
   | {
-      type: 'LOADING';
+      type: StateTypes.LOADING;
     }
   | {
-      type: 'SUCCESS';
+      type: StateTypes.SUCCESS;
       data: D;
     }
   | {
-      type: 'ERROR';
+      type: StateTypes.ERROR;
       error: CustomError;
     };
