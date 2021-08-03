@@ -51,6 +51,7 @@
         "tsx": "never"
       }
     ],
+    "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "import/no-default-export": "error",
     // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.

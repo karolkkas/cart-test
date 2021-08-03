@@ -74,7 +74,7 @@ const App = (): JSX.Element => {
         <p>{productsState.error.message}</p>
       )}
       {productsState.type === StateTypes.SUCCESS && (
-        <>
+        <div data-testid="products-list">
           <ul>
             {productsState.data.map(
               ({ pid, min, max, price, isBlocked, name, quantity }) => (
@@ -95,7 +95,7 @@ const App = (): JSX.Element => {
           <div>
             Całkowity koszt wynosi {formatPrice(sumPrice(productsState.data))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

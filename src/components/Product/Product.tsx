@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useCallback } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { Product, ProductWithQuantity } from 'src/types/products';
@@ -46,13 +46,16 @@ const Product = memo((props: Props): JSX.Element => {
       });
   }, 500);
 
-  const onCounterClick = (count: number) => {
-    setQuantity(count);
-    debounced(count);
-  };
+  const onCounterClick = useCallback(
+    (delta: number) => () => {
+      setQuantity(quantity + delta);
+      debounced(quantity + delta);
+    },
+    [quantity],
+  );
 
   return (
-    <li className="row">
+    <li className="row" data-testid="product-component">
       <div>
         {name}, cena: {formatPrice(price)}
       </div>

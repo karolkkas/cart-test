@@ -1,35 +1,30 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 
 interface Props {
   min: number;
   max: number;
   isBlocked?: boolean;
   quantity: number;
-  onClick: (count: number) => void;
+  onClick: (delta: number) => () => void;
 }
 
 const QuantityCounter = memo((props: Props): JSX.Element => {
   const { min, max, isBlocked, onClick, quantity } = props;
 
-  const onButtonClick = useCallback(
-    (delta: number) => () => {
-      onClick(quantity + delta);
-    },
-    [quantity, onClick],
-  );
-
   return (
     <div>
       <button
+        data-testid="quantity-counter-button-decrease"
         type="button"
-        onClick={onButtonClick(-1)}
+        onClick={onClick(-1)}
         disabled={isBlocked || quantity <= min}
       >
         -
       </button>
       <button
+        data-testid="quantity-counter-button-increase"
         type="button"
-        onClick={onButtonClick(1)}
+        onClick={onClick(1)}
         disabled={isBlocked || quantity >= max}
       >
         +
