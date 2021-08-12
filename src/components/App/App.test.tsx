@@ -25,20 +25,18 @@ describe('<App />', () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: cart }),
     );
-    await act(async () => {
-      render(<App />);
-    });
-    expect(screen.getByTestId('products-list')).toBeInTheDocument();
+
+    render(<App />);
+
+    await screen.findByTestId('products-list');
   });
 
   test('should show error message on catch', async () => {
     (axios.get as jest.Mock).mockImplementation(() => Promise.reject());
-    await act(async () => {
-      render(<App />);
-    });
-    expect(
-      screen.getByText('Ops... Something is wrong... Try again later'),
-    ).toBeInTheDocument();
+
+    render(<App />);
+
+    await screen.findByText('Ops... Something is wrong... Try again later');
   });
 
   test('should synchronize cart data after increasing of quantity', async () => {
